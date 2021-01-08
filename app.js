@@ -5,7 +5,7 @@ window.addEventListener('load', ()=> {
     let temperatureDegree = document.querySelector('.temperature-degree');
     let locationCity = document.querySelector('.location-city');
     const weatherIcon = document.querySelector('#weather-icon');
-    if(navigator.geolocation){
+    //if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position=>{
             long = position.coords.longitude;
             lat = position.coords.latitude;
@@ -19,7 +19,7 @@ window.addEventListener('load', ()=> {
                     return response.json();
                 })
                 .then(data=> {
-                    //console.log(data);
+                    console.log(data);
                     const { description, icon } = data.weather[0];
                     const { temp } = data.main;
                     const tempC = Math.floor(temp - 273);
@@ -38,7 +38,7 @@ window.addEventListener('load', ()=> {
                 });
 
         });
-    }; // else - nie ma lokalizacji
+    //}; // else - nie ma lokalizacji
 
     
 });
