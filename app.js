@@ -5,6 +5,9 @@ window.addEventListener('load', ()=> {
     let temperatureDegree = document.querySelector('.temperature-degree');
     let locationCity = document.querySelector('.location-city');
     const weatherIcon = document.querySelector('#weather-icon');
+    const temperatureSection = document.querySelector('.temperature');
+    const temperatureSpan = document.querySelector('.temperature span');
+
     //if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(position=>{
             long = position.coords.longitude;
@@ -22,9 +25,9 @@ window.addEventListener('load', ()=> {
                     console.log(data);
                     const { description, icon } = data.weather[0];
                     const { temp } = data.main;
-                    const tempC = Math.floor(temp - 273);
+                    const tempC = Math.round(temp - 273);                    
+                    const tempF = Math.round((tempC * 5 / 9) + 32);
                     const name = data.name;
-
                     //console.log(`Pogoda w ${name}: ${weatherDescription}, temperatura: ${temp}`);
 
 
@@ -34,6 +37,17 @@ window.addEventListener('load', ()=> {
                     temperatureDescription.textContent = description;
                     weatherIcon.innerHTML = 
                     `<img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="${description}">`;
+                    
+                    // Degrees convert
+                    temperatureSection.addEventListener('click', ()=>{
+                        if(temperatureSpan.textContent === "F"){
+                            temperatureSpan.textContent = "C";
+                            temperatureDegree.textContent = tempC;
+                        } else {
+                            temperatureSpan.textContent = "F";
+                            temperatureDegree.textContent = tempF;
+                        }
+                    });
 
                 });
 

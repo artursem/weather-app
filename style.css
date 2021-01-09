@@ -35,6 +35,9 @@ body {
     font-size: 30px;
 
 }
+.degree-section span::before{
+    content: "°";
+}
 .degree-section h2 {
     font-size: 40px;
 }
