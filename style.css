@@ -32,7 +32,7 @@ main {
     border-radius: 12px;
     background-color: var(--gray03);
     box-shadow: 10px 10px 10px var(--gray04);
-    padding-top: 40px;
+    padding: 40px 0;
 }
 .location, .temperature {
     height: 20vh;
