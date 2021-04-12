@@ -2,22 +2,40 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weather</title>
 </head>
 <body>
-    <div class="location">
-        <h1 class="location-city">City</h1>
-        <p id="weather-icon">icon</p>
-    </div>
-    <div class="temperature">
-        <div class="degree-section">
-            <h2 class="temperature-degree">0</h2>
-            <span>C</span>
+    <main>
+        <div class="searchbar">
+            <div class="form">
+                <input type="text" name="name" autocomplete="off" required>
+                <label for="name" class="label-name">
+                    <span class="content-name">City</span>
+                </label>
+            </div>
+            <div class="icons">
+                <i class="fas fa-search fa-2x" id="search"></i>
+                <i class="fas fa-map-marked fa-2x" id="local"></i>
+                <!-- <img src=img/search.svg alt="search" id="search">
+                <img src=img/local.svg alt="local" id="local"> -->
+            </div>
         </div>
-        <div class="temperature-description">summary</div>
-    </div>
+        <div class="location">
+            <h1 class="location-city">City</h1>
+            <p id="weather-icon">icon</p>
+        </div>
+        <div class="temperature">
+            <div class="degree-section">
+                <h2 class="temperature-degree">0</h2>
+                <span>C</span>
+            </div>
+            <div class="temperature-description">summary</div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html> 

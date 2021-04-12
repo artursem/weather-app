@@ -1,4 +1,13 @@
-* {
+:root {
+    --blue: rgb(48, 62, 143);
+    --ocean: rgb(47, 150, 163);
+    --gray01: rgb(93, 97, 119);
+    --gray02: rgba(255,255,255,0.5);
+    --gray03: rgba(255,255,255,0.3);
+    --gray04: rgba(0,0,0,0.3);
+}
+
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,14 +18,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+    background: linear-gradient(var(--ocean), var(--blue));
     font-family: sans-serif;
     color: white;
 
 }
-
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid var(--gray02); */
+    border-radius: 12px;
+    background-color: var(--gray03);
+    box-shadow: 10px 10px 10px var(--gray04);
+    padding-top: 40px;
+}
 .location, .temperature {
-    height: 30vh;
+    height: 20vh;
     width: 50%;
     display: flex;
     justify-content: space-around;
@@ -44,4 +63,81 @@ body {
 #weather-icon img {
     width: 100px;
     height: 100px;
+}
+/* search */
+.searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}
+.icons i{
+    margin: 10px;
+    cursor: pointer;
+
+}
+.icons i:hover {
+    transition: filter 0.3s ease-in-out;
+    color:var(--gray02);
+}
+
+/*  input animation */
+
+.form {
+    font-size: 16px;
+    width: 50%;
+    position: relative;
+    height: 50px;
+    margin: 10px;
+}
+
+.form input {
+    width: 100%;
+    height: 100%;
+    color: #595f6e;
+    padding-top: 20px;
+    border: none;
+    outline: none;
+}
+
+.form label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.form label::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -1px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid #5fa5d3;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.content-name {
+    position: absolute;
+    bottom: 5px;
+    left: 0px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name{
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: #5fa5d3;
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+    transform: translateX(0%);
 }

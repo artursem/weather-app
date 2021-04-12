@@ -1,58 +1,28 @@
-window.addEventListener('load', ()=> {
-    let long;
-    let lat;
-    let temperatureDescription = document.querySelector('.temperature-description');
-    let temperatureDegree = document.querySelector('.temperature-degree');
-    let locationCity = document.querySelector('.location-city');
-    const weatherIcon = document.querySelector('#weather-icon');
-    const temperatureSection = document.querySelector('.temperature');
-    const temperatureSpan = document.querySelector('.temperature span');
+// GET CURRENT POSITION
+const currentPosition = {};
+const success = (position) => {
+    //console.log(position.coords.latitude, position.coords.longitude);
+    currentPosition.lat = position.coords.latitude;
+    currentPosition.lon = position.coords.longitude;
+};
 
-    //if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(position=>{
-            long = position.coords.longitude;
-            lat = position.coords.latitude;
-
-            // http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=599f9ab00f5ffd6eeb1a6bf54606a714
-            const myID = '599f9ab00f5ffd6eeb1a6bf54606a714';
-            const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${myID}`;
-
-            fetch(api)
-                .then(response => {
-                    return response.json();
-                })
-                .then(data=> {
-                    console.log(data);
-                    const { description, icon } = data.weather[0];
-                    const { temp } = data.main;
-                    const tempC = Math.round(temp - 273);                    
-                    const tempF = Math.round((tempC * 5 / 9) + 32);
-                    const name = data.name;
-                    //console.log(`Pogoda w ${name}: ${weatherDescription}, temperatura: ${temp}`);
+navigator.geolocation.getCurrentPosition(success);
+console.log(currentPosition);
+console.log(currentPosition.lat);
 
 
-                    // Set DOM elements acc to data 
-                    temperatureDegree.textContent = tempC;
-                    locationCity.textContent = name;
-                    temperatureDescription.textContent = description;
-                    weatherIcon.innerHTML = 
-                    `<img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="${description}">`;
-                    
-                    // Degrees convert
-                    temperatureSection.addEventListener('click', ()=>{
-                        if(temperatureSpan.textContent === "F"){
-                            temperatureSpan.textContent = "C";
-                            temperatureDegree.textContent = tempC;
-                        } else {
-                            temperatureSpan.textContent = "F";
-                            temperatureDegree.textContent = tempF;
-                        }
-                    });
+// FETCH WEATHER DATA
+const fetchData = async ( position ) => {
+    const response = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
+        params: {
+            q: 'London',
+            // lat: position.lat,
+            // lon: position.lon,
+            appid: '599f9ab00f5ffd6eeb1a6bf54606a714'
+        }
+    });
+    console.log(response.data);
+    //update dom
+}
 
-                });
-
-        });
-    //}; // else - nie ma lokalizacji
-
-    
-});
+//fetchData(currentPosition);
