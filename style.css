@@ -1,6 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
 :root {
-    --blue: rgb(48, 62, 143);
-    --ocean: rgb(47, 150, 163);
+    --grad1: rgb(47, 150, 163);
+    --grad2: rgb(48, 62, 143);
+    --grad3: #80a3bb;
+    --grad4: #0d324d;
     --gray01: rgb(93, 97, 119);
     --gray02: rgba(255,255,255,0.5);
     --gray03: rgba(255,255,255,0.3);
@@ -18,8 +23,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(var(--ocean), var(--blue));
-    font-family: sans-serif;
+    background: linear-gradient(30deg, var(--grad4), var(--grad3));
+    font-family: 'Montserrat', sans-serif;
     color: white;
 
 }
@@ -48,6 +53,10 @@ main {
     display: flex;
     align-items: center;
     cursor: pointer;
+    transition: color 0.3s ease-out;
+}
+.degree-section:hover {
+    color: var(--gray02);
 }
 .degree-section span {
     margin: 10px;
@@ -75,69 +84,23 @@ main {
 .icons i{
     margin: 10px;
     cursor: pointer;
+    color: white;
 
 }
 .icons i:hover {
-    transition: filter 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
     color:var(--gray02);
 }
 
-/*  input animation */
-
-.form {
-    font-size: 16px;
-    width: 50%;
-    position: relative;
-    height: 50px;
-    margin: 10px;
-}
 
 .form input {
-    width: 100%;
-    height: 100%;
-    color: #595f6e;
-    padding-top: 20px;
-    border: none;
-    outline: none;
-}
+    width: 200px;
+    height: 40px;
 
-.form label {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--gray01);
+    padding: 3px;
 }
-
-.form label::after {
-    content: '';
-    position: absolute;
-    left: 0px;
-    bottom: -1px;
-    height: 100%;
-    width: 100%;
-    border-bottom: 3px solid #5fa5d3;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-}
-
-.content-name {
-    position: absolute;
-    bottom: 5px;
-    left: 0px;
-    transition: all 0.3s ease-in-out;
-}
-
-.form input:focus + .label-name .content-name,
-.form input:valid + .label-name .content-name{
-    transform: translateY(-150%);
-    font-size: 14px;
-    color: #5fa5d3;
-}
-
-.form input:focus + .label-name::after,
-.form input:valid + .label-name::after {
-    transform: translateX(0%);
+.form input:focus-within {
+    color: var(--grad4);
 }
