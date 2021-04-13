@@ -1,3 +1,6 @@
+// INIT
+const input = document.querySelector('input');
+
 // GET CURRENT POSITION
 const success = (position) => {
     const currentPosition = {
@@ -26,6 +29,7 @@ const fetchData = async ( position ) => {
 
 // DISPLAY RESULTS
 const showData = (data) => {
+    //console.log(data);
     const { description, icon } = data.weather[0];
     const { temp } = data.main;
     const city = document.querySelector('.location-city');
@@ -36,8 +40,8 @@ const showData = (data) => {
     weatherIcon.innerHTML = 
     `<img src="http://openweathermap.org/img/wn/${icon}@2x.png" alt="${description}">`;
     summary.textContent = description;
-    
-    const tempBtn = document.querySelector('.temperature');
+    input.value = data.name;
+    const tempBtn = document.querySelector('.degree-section');
     const tempSpan = document.querySelector('.degree-section span');
     const tempC = Math.round(temp - 273);
     const tempF = Math.round((tempC * 5 / 9) + 32);
@@ -54,7 +58,12 @@ const showData = (data) => {
 };
 
 // AUTOMATIC
-navigator.geolocation.getCurrentPosition(success);
+const getLocalWeather = () => navigator.geolocation.getCurrentPosition(success);
+window.addEventListener('load', getLocalWeather);
+
+// LOCAL BTN
+const localWeather = document.querySelector('#local');
+localWeather.addEventListener('click', getLocalWeather);
 
 // CITY INPUT
 const onInput = (input) => {
@@ -63,6 +72,9 @@ const onInput = (input) => {
     fetchCity(value)
     .then((response) => {
         showData(response);
+    })
+    .catch(() => {
+        alert('pick a city!');
     });
     }
 }
@@ -89,6 +101,4 @@ const fetchCity = async (city) => {
     return response.data;
 };
 
-
-const input = document.querySelector('input');
 input.addEventListener('input', debounce(onInput));

@@ -33,15 +33,15 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid var(--gray02); */
+    min-width: 500px;
     border-radius: 12px;
     background-color: var(--gray03);
     box-shadow: 10px 10px 10px var(--gray04);
-    padding: 40px 0;
+    padding: 0px 0 20px 0;
 }
 .location, .temperature {
-    height: 20vh;
-    width: 50%;
+    height: 15vh;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -73,34 +73,39 @@ main {
     width: 100px;
     height: 100px;
 }
-/* search */
-.searchbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-}
-.icons i{
+i{
     margin: 10px;
     cursor: pointer;
     color: white;
 
 }
-.icons i:hover {
+i:hover {
     transition: color 0.3s ease-in-out;
     color:var(--gray02);
 }
 
 
-.form input {
-    width: 200px;
-    height: 40px;
-
+input {
+    width: 260px;
+    height: 60px;
+    
+    font-size: 28px;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-    color: var(--gray01);
+    color: white;
+    background: none;
+    border: none;
     padding: 3px;
+    cursor: pointer;
+
+    border: 1px solid var(--gray03);
+    border-radius: 10px;
+
+
 }
-.form input:focus-within {
+input:focus-within {
+    background: var(--gray02);
     color: var(--grad4);
+    outline: 1px white;
+
 }
